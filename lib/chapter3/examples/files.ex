@@ -9,6 +9,7 @@ defmodule FilesHelper do
     (чтобы посчитать слова в строке, используйте функцию length(String.split(line) ).
   """
 
+  #@spec large_lines!(string) :: charlist
   def large_lines!(path) do
     File.stream!(path)
       |> Stream.map(&String.replace(&1, "\n", ""))

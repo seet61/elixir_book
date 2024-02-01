@@ -1,4 +1,4 @@
-defmodule ListHelper do
+defmodule ListHelperSum do
   @moduledoc """
   Retrun sum of all elements at list of numbers
   """
