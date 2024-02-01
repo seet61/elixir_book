@@ -1,4 +1,4 @@
-defmodule ListHelper do
+defmodule ListHelperRange do
   @moduledoc """
   Return list with values from range a & b
 

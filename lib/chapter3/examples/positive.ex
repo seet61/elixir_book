@@ -1,4 +1,4 @@
-defmodule ListHelper do
+defmodule ListHelperPositive do
   @moduledoc """
   Return list only with positive numbers
 

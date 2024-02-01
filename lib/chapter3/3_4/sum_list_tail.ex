@@ -1,4 +1,4 @@
-defmodule ListHelper do
+defmodule ListHelperTail do
   def sum(list) do
     do_sum(0, list)
   end

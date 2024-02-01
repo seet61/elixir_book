@@ -1,4 +1,4 @@
-defmodule Employees do
+defmodule EmployeesStream do
   def print(list) do
     list
       |> Stream.with_index
