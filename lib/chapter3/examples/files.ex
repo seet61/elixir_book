@@ -5,7 +5,7 @@ defmodule FilesHelper do
   lines_lengths!/ 1 , принимающую на вход путь к файлу и возвращающую спи - сок чисел, где каждое число – это длина соответствующей строки файла;
   longest_line_length!/ 1, возвращающую размер самой длинной строки;
   longest_line!/ 1 , возвращающую содержимое самой длинной строки файла;
-  words_per_line!/ 1, возвращающую список чисел, каждое из которых обозна - чает количество слов в строке
+  words_per_line!/ 1, возвращающую список чисел, каждое из которых обозначает количество слов в строке
     (чтобы посчитать слова в строке, используйте функцию length(String.split(line) ).
   """
 
@@ -39,6 +39,23 @@ defmodule FilesHelper do
         |> String.length
         end)
       |> Enum.max
+  end
+
+  def words_per_line!(path) do
+    File.stream!(path)
+    |> Stream.map(fn item ->
+      item
+      |> String.replace("\n", "")
+      |> String.split
+      |> Enum.count
+    end)
+    |> Stream.filter(fn item ->
+      item > 0
+    end)
+    |> Stream.with_index
+    |> Enum.each(fn {count, idx} ->
+      IO.puts("#{idx + 1}. has #{count} words")
+    end)
   end
 
 end

@@ -21,4 +21,9 @@ defmodule FilesHelperTest do
     IO.puts(max_length)
     assert max_length == 311
   end
+
+  test "get count of words at line" do
+    IO.puts("get count of words at line")
+    FilesHelper.words_per_line!("./test/examples/test.txt")
+  end
 end
