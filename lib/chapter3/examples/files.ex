@@ -38,9 +38,7 @@ defmodule FilesHelper do
         |> String.replace("\n", "")
         |> String.length
         end)
-      |> Enum.each(fn item ->
-        IO.puts("#{item}")
-        end)
+      |> Enum.max
   end
 
 end
