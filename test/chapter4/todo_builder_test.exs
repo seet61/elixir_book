@@ -15,8 +15,8 @@ defmodule TodoListTest do
     IO.inspect(todo_list)
   end
 
-  test "todo_builder impoerter test" do
-    IO.inspect("todo_builder impoerter test")
+  test "todo_builder importer test" do
+    IO.inspect("todo_builder importer test")
     todo_list = TodoList.CsvImporter.import("./lib/chapter4/todos.csv")
 
     IO.inspect(todo_list)
