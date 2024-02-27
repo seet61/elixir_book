@@ -6,15 +6,15 @@ defmodule KeyValueStoreGenServer do
   use GenServer
 
   def start do
-    GenServer.start(KeyValueStoreGenServer, nil, name: KeyValueStoreGenServer)
+    GenServer.start(__MODULE__, nil, name: __MODULE__)
   end
 
   def put(key, value) do
-    GenServer.cast(KeyValueStoreGenServer, {:put, key, value})
+    GenServer.cast(__MODULE__, {:put, key, value})
   end
 
   def get(key) do
-    GenServer.call(KeyValueStoreGenServer, {:get, key})
+    GenServer.call(__MODULE__, {:get, key})
   end
 
   def init(_) do
