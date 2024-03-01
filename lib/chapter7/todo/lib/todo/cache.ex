@@ -16,7 +16,7 @@ defmodule Todo.Cache do
 
   @impl GenServer
   def handle_call({:server_process, todo_list_name}, _, todo_servers) do
-    IO.inspect("checking #{todo_list_name}")
+    #IO.inspect("checking #{todo_list_name}")
     case Map.fetch(todo_servers, todo_list_name) do
       {:ok, todo_server} ->
         # сервер есть в сприске
