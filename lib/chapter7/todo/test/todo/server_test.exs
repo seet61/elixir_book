@@ -7,13 +7,13 @@ defmodule Todo.ServerTest do
 
     IO.inspect(todo_list)
 
-    Todo.Server.add_entry(%{date: ~D[2018-12-19], title: "Dentist"})
-    Todo.Server.add_entry(%{date: ~D[2018-12-20], title: "Shopping"})
-    Todo.Server.add_entry(%{date: ~D[2018-12-19], title: "Movies"})
+    Todo.Server.add_entry(todo_list, %{date: ~D[2018-12-19], title: "Dentist"})
+    Todo.Server.add_entry(todo_list, %{date: ~D[2018-12-20], title: "Shopping"})
+    Todo.Server.add_entry(todo_list, %{date: ~D[2018-12-19], title: "Movies"})
 
-    IO.inspect(Todo.Server.size())
+    IO.inspect(Todo.Server.size(todo_list))
 
-    todo_result = Todo.Server.entries(~D[2018-12-20])
+    todo_result = Todo.Server.entries(todo_list, ~D[2018-12-20])
     IO.inspect(todo_result)
 
     assert [%{id: 2, date: ~D[2018-12-20], title: "Shopping"}] == todo_result
