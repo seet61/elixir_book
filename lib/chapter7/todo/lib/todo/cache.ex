@@ -11,6 +11,9 @@ defmodule Todo.Cache do
 
   @impl GenServer
   def init(_) do
+    # Добавление локального хранилища
+    Todo.Database.start()
+
     {:ok, %{}}
   end
 
@@ -23,7 +26,7 @@ defmodule Todo.Cache do
         {:reply, todo_server, todo_servers}
       :error ->
           # сервера нет в словаре
-          {:ok, new_server} = Todo.Server.start()
+          {:ok, new_server} = Todo.Server.start(todo_list_name)
           {
             :reply,
             new_server,

@@ -1,6 +1,8 @@
 defmodule Todo.CacheTest do
   use ExUnit.Case
 
+  @db_folder "./persist"
+
   test "cache init" do
     {:ok, cache} = Todo.Cache.start()
     IO.inspect(cache)
@@ -20,12 +22,13 @@ defmodule Todo.CacheTest do
   end
 
   test "check cached process" do
+    File.rm_rf!(@db_folder)
     {:ok, cache} = Todo.Cache.start()
     IO.inspect(cache)
 
-    bobs = Todo.Cache.server_process(cache, "Bob's list")
-    Todo.Server.add_entry(bobs, %{date: ~D[2018-12-19], title: "Dentist"})
-    bob_list = Todo.Server.entries(bobs, ~D[2018-12-19])
+    bobs_list = Todo.Cache.server_process(cache, "Bob's list")
+    Todo.Server.add_entry(bobs_list, %{date: ~D[2018-12-19], title: "Dentist"})
+    bob_list = Todo.Server.entries(bobs_list, ~D[2018-12-19])
 
     assert [%{date: ~D[2018-12-19], id: 1, title: "Dentist"}] == bob_list
 
