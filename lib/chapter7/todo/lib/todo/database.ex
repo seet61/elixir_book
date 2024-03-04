@@ -12,8 +12,6 @@ defmodule Todo.Database do
   end
 
   def store(key, data) do
-    IO.inspect("store #{key}")
-    IO.inspect(data)
     GenServer.cast(__MODULE__, {:store, key, data})
   end
 
@@ -29,20 +27,29 @@ defmodule Todo.Database do
 
   def handle_cast({:store, key, data}, state) do
     # Обработчик сохранения
-    key
-    |> file_name()
-    |> File.write!(:erlang.term_to_binary(data))
+    spawn(fn ->
+      key
+      |> file_name()
+      |> File.write!(:erlang.term_to_binary(data))
+    end)
 
     {:noreply, state}
   end
 
-  def handle_call({:get, key}, _, state) do
-    data = case File.read(file_name(key)) do
-      {:ok, contents} -> :erlang.binary_to_term(contents)
-      _ -> nil
-    end
+  def handle_call({:get, key}, caller, state) do
+    # Создаем отдельный процесс обработки :get запроса
+    spawn(fn ->
+      data = case File.read(file_name(key)) do
+        {:ok, contents} -> :erlang.binary_to_term(contents)
+        _ -> nil
+      end
 
-    {:reply, data, state}
+      # Возврат ответа инициатору
+      GenServer.reply(caller, data)
+    end)
+
+    # Сообщение для сервера что тут ответа не будет
+    {:noreply, state}
   end
 
   defp file_name(key) do
