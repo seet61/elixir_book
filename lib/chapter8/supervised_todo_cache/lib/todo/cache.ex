@@ -14,7 +14,7 @@ defmodule Todo.Cache do
     IO.puts("Strating to-do cache")
 
     # Добавление локального хранилища
-    Todo.Database.start()
+    Todo.Database.start_link()
 
     {:ok, %{}}
   end

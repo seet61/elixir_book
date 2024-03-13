@@ -1,4 +1,4 @@
-defmodule Todo.DatabaseWorker do
+defmodule Todo.DatabaseWorker7 do
   @moduledoc """
   воркер
   """
