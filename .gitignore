@@ -24,3 +24,6 @@ elixir_book-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# SOAP libs
+/lib/chapter3/Nif/SOAP
