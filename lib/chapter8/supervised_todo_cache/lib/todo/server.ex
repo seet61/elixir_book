@@ -1,4 +1,4 @@
-defmodule Todo.Server do
+defmodule Todo.ServerNew do
   use GenServer
 
   def start(name) do

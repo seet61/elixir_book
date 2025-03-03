@@ -1,4 +1,4 @@
-defmodule Todo.Cache do
+defmodule Todo.CacheNew do
   use GenServer
 
   def start_link(_) do

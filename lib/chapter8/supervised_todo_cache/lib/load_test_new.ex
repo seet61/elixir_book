@@ -4,7 +4,7 @@
 #   elixir --erl "+P 2000000" -S mix run -e LoadTest.run
 #
 # Note: the +P 2000000 sets maximum number of processes to 2 millions
-defmodule LoadTest do
+defmodule LoadTestNew do
   def run do
     {:ok, cache} = Todo.Cache.start()
 
